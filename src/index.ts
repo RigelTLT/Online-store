@@ -1,42 +1,59 @@
 import './style.scss';
 import { source } from './components/source/source';
+import { addBasket } from './components/basket/basket';
 
 const products = document.querySelector('.products') as HTMLElement;
 source.forEach((element, index) => {
   const cellProducts = document.createElement('div');
-  cellProducts.classList.add('cellProducts');
+  cellProducts.classList.add('cell-products');
+  cellProducts.dataset.name = element.name;
+  cellProducts.dataset.year = element.year;
+  cellProducts.dataset.formFactor = element.formFactor;
+  cellProducts.dataset.hullWidth = element.hullWidth;
+  cellProducts.dataset.externalСoolers = String(element.externalСoolers);
+  cellProducts.dataset.price = element.price;
   products.append(cellProducts);
+  const framePhoto = document.createElement('div');
+  framePhoto.classList.add('frame-photo');
+  cellProducts.append(framePhoto);
   const photoProducts = document.createElement('img');
-  photoProducts.classList.add('photoProducts');
+  photoProducts.classList.add('photo-products');
   photoProducts.src = `./assets/img/${index + 1}.jpg`;
-  cellProducts.append(photoProducts);
+  framePhoto.append(photoProducts);
   const nameProducts = document.createElement('span');
-  nameProducts.classList.add('nameProducts');
+  nameProducts.classList.add('name-products');
   cellProducts.append(nameProducts);
-  nameProducts.innerHTML = element.name;
+  nameProducts.innerHTML = 'Name: '+element.name;
   const yearProducts = document.createElement('span');
-  yearProducts.classList.add('yearProducts');
+  yearProducts.classList.add('year-products');
   cellProducts.append(yearProducts);
-  yearProducts.innerHTML = element.year;
+  yearProducts.innerHTML = 'Year: '+element.year;
+  const colorProducts = document.createElement('span');
+  colorProducts.classList.add('color-products');
+  cellProducts.append(colorProducts);
+  colorProducts.innerHTML = 'Color: '+element.color;
   const formFactorProducts = document.createElement('span');
-  formFactorProducts.classList.add('formFactorProducts');
+  formFactorProducts.classList.add('form-factor-products');
   cellProducts.append(formFactorProducts);
-  formFactorProducts.innerHTML = element.formFactor;
+  formFactorProducts.innerHTML = 'Form factor: '+element.formFactor;
   const hullWidthProducts = document.createElement('span');
-  hullWidthProducts.classList.add('hullWidthProducts');
+  hullWidthProducts.classList.add('hull-width-products');
   cellProducts.append(hullWidthProducts);
-  hullWidthProducts.innerHTML = element.hullWidth;
+  hullWidthProducts.innerHTML = 'Hull width: '+element.hullWidth;
   const externalСoolersProducts = document.createElement('span');
-  externalСoolersProducts.classList.add('externalСoolersProducts');
+  externalСoolersProducts.classList.add('external-coolers-products');
   cellProducts.append(externalСoolersProducts);
   if (element.externalСoolers === true) {
-    externalСoolersProducts.innerHTML = 'True';
+    externalСoolersProducts.innerHTML = 'External coolers: True';
   } else {
-    externalСoolersProducts.innerHTML = 'False';
+    externalСoolersProducts.innerHTML = 'External coolers: False';
   }
   const priceProducts = document.createElement('span');
   priceProducts.classList.add('priceProducts');
   cellProducts.append(priceProducts);
-  priceProducts.innerHTML = element.price;
+  priceProducts.innerHTML = 'Price: '+element.price;
 });
-console.log(source);
+let cellProducts = document.querySelectorAll('.cell-products');
+cellProducts.forEach((element) => {
+  element.addEventListener('click', addBasket);
+})
