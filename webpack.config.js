@@ -9,7 +9,7 @@ const devServer = (isDev) => !isDev ? {} : {
   devServer: {
     open: true,
     port: 8080,
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, '/assets/img'),
   },
 };
 
@@ -24,7 +24,7 @@ module.exports = ({ development }) => ({
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext]',
+    assetModuleFilename: 'assets/img/[hash][ext]',
   },
   module: {
     rules: [
@@ -35,11 +35,11 @@ module.exports = ({ development }) => ({
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-        type: './src/assets/img',
+        type: 'asset/resource',
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
-        type: 'assets/resource',
+        type: 'asset/resource',
       },
       {
         test: /\.css$/i,
