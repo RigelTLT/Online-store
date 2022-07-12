@@ -1,6 +1,7 @@
 import './style.scss';
 import { source } from './components/source/source';
 import { addBasket } from './components/basket/basket';
+import { sortName, sortNameRevers, sortYear, sortYearRevers } from './components/sort/sort';
 
 const products = document.querySelector('.products') as HTMLElement;
 source.forEach((element, index) => {
@@ -44,16 +45,24 @@ source.forEach((element, index) => {
   externalСoolersProducts.classList.add('external-coolers-products');
   cellProducts.append(externalСoolersProducts);
   if (element.externalСoolers === true) {
-    externalСoolersProducts.innerHTML = 'External coolers: True';
+    externalСoolersProducts.innerHTML = 'External coolers: Yes';
   } else {
-    externalСoolersProducts.innerHTML = 'External coolers: False';
+    externalСoolersProducts.innerHTML = 'External coolers: No';
   }
   const priceProducts = document.createElement('span');
   priceProducts.classList.add('priceProducts');
   cellProducts.append(priceProducts);
   priceProducts.innerHTML = 'Price: '+element.price;
 });
-let cellProducts = document.querySelectorAll('.cell-products');
+const cellProducts = document.querySelectorAll('.cell-products');
 cellProducts.forEach((element) => {
   element.addEventListener('click', addBasket);
 })
+const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
+sortNameButton.addEventListener('click', sortName);
+const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
+sortNameRevButton.addEventListener('click', sortNameRevers);
+const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
+sortYearButton.addEventListener('click', sortYear);
+const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
+sortYearRevButton.addEventListener('click', sortYearRevers);
