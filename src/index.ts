@@ -1,7 +1,9 @@
 import './style.scss';
 import { source } from './components/source/source';
 import { addBasket } from './components/basket/basket';
-import { sortName, sortNameRevers, sortYear, sortYearRevers } from './components/sort/sort';
+import SortProduct from './components/sort/sort';
+import Slider from './components/slider/slider';
+
 
 const products = document.querySelector('.products') as HTMLElement;
 source.forEach((element, index) => {
@@ -58,11 +60,16 @@ const cellProducts = document.querySelectorAll('.cell-products');
 cellProducts.forEach((element) => {
   element.addEventListener('click', addBasket);
 })
+const sortProd = new SortProduct();
 const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
-sortNameButton.addEventListener('click', sortName);
+sortNameButton.addEventListener('click', sortProd.sortName);
 const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
-sortNameRevButton.addEventListener('click', sortNameRevers);
+sortNameRevButton.addEventListener('click', sortProd.sortNameRevers);
 const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
-sortYearButton.addEventListener('click', sortYear);
+sortYearButton.addEventListener('click', sortProd.sortYear);
 const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
-sortYearRevButton.addEventListener('click', sortYearRevers);
+sortYearRevButton.addEventListener('click', sortProd.sortYearRevers);
+const slider = new Slider();
+slider.createFilterYear();
+slider.createFilterPrice();
+

@@ -6,6 +6,7 @@ body {
   display: flex;
   flex-direction: row;
     flex-wrap: wrap;
+    width: 70%;
     justify-content: space-around;
 }
 .header{
@@ -49,7 +50,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.filters{
+.search-sort{
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
@@ -59,6 +60,12 @@ body {
 }
 .input-group{
   width: 25rem !important;
+}
+.container-products{
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .cell-products{
   background-color: rgb(255, 255, 255);
@@ -89,4 +96,16 @@ body {
 }
 .active-product{
   background-color: rgb(204, 191, 155);
+}
+.filters{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0 35px;
+    align-items: center;
+}
+.slider-year,
+.slider-price{
+  width: 15rem;
+  margin:3rem 0;
 }
