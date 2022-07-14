@@ -77,8 +77,17 @@ const slider = new Slider(year, price, hull);
 slider.sliderYearObject.on('set', function (values, handle) {
  console.log(values, handle);
  });*/
- const filter = new Filter();
+ function activeButton(){
+  const target = event?.target as HTMLElement;
+  if(target.classList.contains('button-filter')){
+    target.classList.toggle('button-filter-active');
+  }
+}
  const buttonName = document.querySelectorAll('.element-filter');
  buttonName.forEach((element) => {
-  element.addEventListener('click', filter.activeButton);
+  element.addEventListener('click', activeButton);
 })
+
+const test = new Filter(source, ["2009", "2022"]);
+const tet = test.filterYear();
+console.log(tet);
