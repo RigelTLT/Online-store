@@ -3,7 +3,7 @@ import { source } from './components/source/source';
 import { addBasket } from './components/basket/basket';
 import SortProduct from './components/sort/sort';
 import Slider from './components/slider/slider';
-
+import Filter from './components/filters/filter';
 
 const products = document.querySelector('.products') as HTMLElement;
 source.forEach((element, index) => {
@@ -69,7 +69,16 @@ const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
 sortYearButton.addEventListener('click', sortProd.sortYear);
 const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
 sortYearRevButton.addEventListener('click', sortProd.sortYearRevers);
-const slider = new Slider();
-slider.createFilterYear();
-slider.createFilterPrice();
-
+const year = document.querySelector('.slider-year') as HTMLInputElement;
+const price = document.querySelector('.slider-price') as HTMLInputElement;
+const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
+const slider = new Slider(year, price, hull);
+/*console.log(slider.sliderYearObject);
+slider.sliderYearObject.on('set', function (values, handle) {
+ console.log(values, handle);
+ });*/
+ const filter = new Filter();
+ const buttonName = document.querySelectorAll('.element-filter');
+ buttonName.forEach((element) => {
+  element.addEventListener('click', filter.activeButton);
+})

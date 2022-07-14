@@ -64,7 +64,7 @@ export const source = [
     price: '1300',
     name: 'Dexp',
     formFactor: 'Mid-Tower',
-    color: 'pink',
+    color: 'red',
     year: '2011',
     externalСoolers: false,
     hullWidth: '200',

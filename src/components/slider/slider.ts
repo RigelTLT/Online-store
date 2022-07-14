@@ -1,18 +1,18 @@
-import noUiSlider from 'nouislider';
+import noUiSlider, { API } from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import wNumb from 'wnumb';
 class Slider {
   protected sliderYear: HTMLInputElement;
   protected filterPrice: HTMLInputElement;
-  constructor(){
-    this.sliderYear = document.querySelector('.slider-year') as HTMLInputElement;
-    this.filterPrice = document.querySelector(
-      '.slider-price'
-    ) as HTMLInputElement;
-  }
-  createFilterYear() {
-    let sliderYear = document.querySelector('.slider-year') as HTMLInputElement;
-    const sliderYearObject = noUiSlider.create(this.sliderYear, {
+  protected filterHull: HTMLInputElement;
+  public sliderYearObject: API;
+  public filterPriceObject: API;
+  public filterHullObject: API;
+  constructor(sliderYear: HTMLInputElement, filterPrice: HTMLInputElement, filterHull: HTMLInputElement){
+    this.sliderYear = sliderYear;
+    this.filterPrice = filterPrice;
+    this.filterHull = filterHull;
+    this.sliderYearObject = noUiSlider.create(this.sliderYear, {
       start: [2009, 2022],
       connect: true,
       tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
@@ -22,15 +22,7 @@ class Slider {
       },
       step: 1,
     });
-    sliderYearObject.on('set', function (values, handle) {
-      console.log(values, handle);
-    });
-  }
-  createFilterPrice() {
-    let filterPrice = document.querySelector(
-      '.slider-price'
-    ) as HTMLInputElement;
-    const filterPriceObject = noUiSlider.create(this.filterPrice, {
+    this.filterPriceObject = noUiSlider.create(this.filterPrice, {
       start: [0, 40000],
       connect: true,
       tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
@@ -38,11 +30,24 @@ class Slider {
         min: [0],
         max: [40000],
       },
-      step: 1,
+      step: 100,
     });
-    filterPriceObject.on('set', function (values, handle) {
-      console.log(values, handle);
+    this.filterHullObject = noUiSlider.create(this.filterHull, {
+      start: [130, 330],
+      connect: true,
+      tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
+      range: {
+        min: [130],
+        max: [330],
+      },
+      step: 10,
     });
+  }
+  get valueYear(){
+    return this.sliderYearObject.get();
+  }
+  get valuePrice(){
+    return this.filterPriceObject.get();
   }
 }
 export default Slider;

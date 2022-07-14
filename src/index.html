@@ -49,9 +49,10 @@
             type="text"
             class="form-control"
             placeholder="Search..."
-            aria-label="Пример текста с двумя кнопками"
             aria-describedby="button-addon3"
           />
+          <button class="clean-search">	
+            &#10006;</button>
         </div>
         <div class="dropdown">
           <button
@@ -77,6 +78,69 @@
           <div class="slider-year"></div>
           <h5>Filter price</h5>
           <div class="slider-price"></div>
+          <h5>Filter hull width</h5>
+          <div class="slider-hull-width"></div>
+          <h5>Filter color</h5>
+          <ul class="list-filter">
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="1" class="input-color red"><span class="span-color span-red"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="1" class="input-color blue"><span class="span-color span-blue"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="1" class="input-color black"><span class="span-color span-black"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="1" class="input-color grey"><span class="span-color span-grey"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="1" class="input-color white"><span class="span-color span-white"></span></label></li>
+          </ul>
+          <h5>Filter name</h5>
+          <ul class="list-filter">
+            <li class="element-filter">
+              <button class="button-filter">AeroCool</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Corsair</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Cougar</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">DEEPCOOL</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Dexp</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Exgate</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Formula</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">GINZZU</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">ZALMAN</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">ZET</button>
+            </li>
+          </ul>
+          <h5>Filter form factor</h5>
+          <ul class="list-filter">
+            <li class="element-filter">
+              <button class="button-filter">Mini-Tower</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Mid-Tower</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">SFF</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Mini-ITX</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter">Full-Tower</button>
+            </li>
+          </ul>
+          <h5>Filter external coolers</h5>
+          <input class="external-cooler" type="checkbox"/>
         </section>
         <section class="products"></section>
       </div>

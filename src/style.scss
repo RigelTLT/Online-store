@@ -6,7 +6,8 @@ body {
   display: flex;
   flex-direction: row;
     flex-wrap: wrap;
-    width: 70%;
+    max-width: calc(100% - 350px);
+    min-width: 280px;
     justify-content: space-around;
 }
 .header{
@@ -33,10 +34,13 @@ body {
     text-align: center;
     z-index: 10;
 }
+.clean-search{
+  border: 1px solid #6c757dc2;
+}
 .basket{
   height: 50px;
   width: 50px;
-  background-image: url('../public/assets/svg/basket_icon.svg');
+  background: url('../public/assets/svg/basket_icon.svg') no-repeat;
   display: flex;
   align-items: center;
 }
@@ -103,9 +107,61 @@ body {
     flex-wrap: wrap;
     padding: 0 35px;
     align-items: center;
+    max-width: 350px;
 }
 .slider-year,
-.slider-price{
-  width: 15rem;
+.slider-price,
+.slider-hull-width{
+  width: 100%;
   margin:3rem 0;
 }
+.list-filter{
+  list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.element-filter{
+    padding: 5px;
+}
+.label-color {
+  width: 32px;
+  height: 26px;
+  display: block;
+  position: relative;
+ }
+.input-color + .span-color {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  
+  cursor: pointer;
+ }
+ .input-color:checked + .span-color {
+  background-position: 0 -26px; 
+ }
+ .red + .span-red {
+  background: url(../public/assets/img/red.png) no-repeat;
+ }
+ .blue + .span-blue {
+  background: url(../public/assets/img/blue.png) no-repeat;
+ }
+ .black + .span-black {
+  background: url(../public/assets/img/black.png) no-repeat;
+ }
+ .grey + .span-grey {
+  background: url(../public/assets/img/grey.png) no-repeat;
+ }
+ .white + .span-white {
+  background: url(../public/assets/img/white.png) no-repeat;
+ }
+ .button-filter-active{
+  background-color: rgb(204, 191, 155);
+ }
+ .external-cooler{
+  transform:scale(2);
+  cursor:pointer;
+ }
