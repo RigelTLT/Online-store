@@ -62,6 +62,9 @@ body {
   align-items: flex-start;
   justify-content: flex-end;
 }
+.form-control{
+  min-width: 180px !important;
+}
 .input-group{
   width: 25rem !important;
 }
