@@ -91,56 +91,61 @@
           <h5>Filter name</h5>
           <ul class="list-filter">
             <li class="element-filter">
-              <button class="button-filter">AeroCool</button>
+              <button class="button-filter name">AeroCool</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Corsair</button>
+              <button class="button-filter name">Corsair</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Cougar</button>
+              <button class="button-filter name">Cougar</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">DEEPCOOL</button>
+              <button class="button-filter name">DEEPCOOL</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Dexp</button>
+              <button class="button-filter name">Dexp</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Exgate</button>
+              <button class="button-filter name">Exgate</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Formula</button>
+              <button class="button-filter name">Formula</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">GINZZU</button>
+              <button class="button-filter name">GINZZU</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">ZALMAN</button>
+              <button class="button-filter name">ZALMAN</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">ZET</button>
+              <button class="button-filter name">ZET</button>
             </li>
           </ul>
           <h5>Filter form factor</h5>
           <ul class="list-filter">
             <li class="element-filter">
-              <button class="button-filter">Mini-Tower</button>
+              <button class="button-filter form-factor">Mini-Tower</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Mid-Tower</button>
+              <button class="button-filter form-factor">Mid-Tower</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">SFF</button>
+              <button class="button-filter form-factor">SFF</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Mini-ITX</button>
+              <button class="button-filter form-factor">Mini-ITX</button>
             </li>
             <li class="element-filter">
-              <button class="button-filter">Full-Tower</button>
+              <button class="button-filter form-factor">Full-Tower</button>
             </li>
           </ul>
           <h5>Filter external coolers</h5>
-          <input class="external-cooler" type="checkbox"/>
+          <div class="container-coolers">
+          <label for="label-cooler">Yes</label>
+          <input id="cooler-yes" value="true" class="external-cooler" type="checkbox"/>
+          <label for="label-cooler">No</label>
+          <input id="cooler-no" value="false" class="external-cooler" type="checkbox"/>
+          </div>
         </section>
         <section class="products"></section>
       </div>

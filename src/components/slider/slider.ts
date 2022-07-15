@@ -44,10 +44,13 @@ class Slider {
     });
   }
   get valueYear(){
-    return this.sliderYearObject.get();
+    return this.sliderYearObject.get(true);
   }
   get valuePrice(){
-    return this.filterPriceObject.get();
+    return this.filterPriceObject.get(true);
+  }
+  get valueHull(){
+    return this.filterHullObject.get(true);
   }
 }
 export default Slider;

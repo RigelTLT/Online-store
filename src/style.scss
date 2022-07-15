@@ -76,6 +76,7 @@ body {
 }
 .cell-products{
   background-color: rgb(255, 255, 255);
+  max-height: 428px;
   display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -167,4 +168,5 @@ body {
  .external-cooler{
   transform:scale(2);
   cursor:pointer;
+  margin: 0 10px;
  }

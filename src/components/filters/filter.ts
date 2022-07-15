@@ -1,5 +1,4 @@
-import { source } from '../source/source';
-interface IFilter{
+export interface IFilter{
       id: string;
       price: string;
       name: string;
@@ -9,18 +8,18 @@ interface IFilter{
       externalСoolers: boolean;
       hullWidth: string
 }
-interface IFilters extends Array<IFilter>{}
+export interface IFilters extends Array<IFilter>{}
 
-class Filter {
+export class Filter {
   products: IFilters;
-  year?: string[];
-  price?: string[];
-  hullWidth?: string[];
+  year?: number[];
+  price?: number[];
+  hullWidth?: number[];
   color?: string[];
   name?: string[];
   formFactor?: string[];
-  externalCoolers?: boolean;
-  constructor(products : IFilters, year?: string[], price?: string[], hullWidth?: string[], color?: string[], name?: string[], formFactor?: string[], externalCoolers?: boolean){
+  externalCoolers?: string[];
+  constructor(products : IFilters, year?: number[], price?: number[], hullWidth?: number[], color?: string[], name?: string[], formFactor?: string[], externalCoolers?: string[]){
     this.products = products;
     this.year = year;
     this.price = price;
@@ -35,77 +34,73 @@ class Filter {
       const from = Number(this.year[0]);
       const to = Number(this.year[1]);
       const filteredArray = this.products.filter(function(year){
-        return Number(year.year) > from && Number(year.year) < to;
+        return Number(year.year) >= from && Number(year.year) <= to;
       })
       return filteredArray;
     }
   }
-  public filterPrice() {
+  public filterPrice(array : IFilter[]) {
     if(this.price){
       const from = Number(this.price[0]);
       const to = Number(this.price[1]);
-      const filteredArray = this.products.filter(function(price){
-        return Number(price.price) > from && Number(price.price) < to;
+      const filteredArray = array.filter(function(price){
+        return Number(price.price) >= from && Number(price.price) <= to;
       })
       return filteredArray;
     }
   }
-  public filterHullWidth() {
+  public filterHullWidth(array : IFilter[]) {
     if(this.hullWidth){
       const from = Number(this.hullWidth[0]);
       const to = Number(this.hullWidth[1]);
-      const filteredArray = this.products.filter(function(hullWidth){
-        return Number(hullWidth.hullWidth) > from && Number(hullWidth.hullWidth) < to;
+      const filteredArray = array.filter(function(hullWidth){
+        return Number(hullWidth.hullWidth) >= from && Number(hullWidth.hullWidth) <= to;
       })
       return filteredArray;
     }
   }
-  public filterColor() {
-    if(this.color){
+  public filterColor(array : IFilter[]) {
+    if(this.color && this.color.length !== 0){
       const arrayColor = this.color;
-      const filteredArray = this.products.filter(function(color){
-        arrayColor.forEach(element => {
-          if(element === color.color){
-            return true;
-          }
-        });
-      })
+      const filteredArray = array.filter(function(color){
+        return arrayColor.indexOf( color.color ) > -1; 
+      });
       return filteredArray;
+    }else{
+      return array;
     }
   }
-  public filterName() {
-    if(this.name){
+  public filterName(array : IFilter[]) {
+    if(this.name && this.name.length !== 0){
       const arrayName = this.name;
-      const filteredArray = this.products.filter(function(name){
-        arrayName.forEach(element => {
-          if(element === name.name){
-            return true;
-          }
-        });
+      const filteredArray = array.filter(function(name){
+        return arrayName.indexOf( name.name ) > -1; 
       })
       return filteredArray;
+    }else{
+      return array;
     }
   }
-  public filterFormFactor() {
-    if(this.formFactor){
+  public filterFormFactor(array : IFilter[]) {
+    if(this.formFactor && this.formFactor.length !== 0){
       const arrayFormFactor = this.formFactor;
-      const filteredArray = this.products.filter(function(formFactor){
-        arrayFormFactor.forEach(element => {
-          if(element === formFactor.formFactor){
-            return true;
-          }
-        });
-      })
+      const filteredArray = array.filter(function(formFactor){
+        return arrayFormFactor.indexOf( formFactor.formFactor ) > -1; 
+      });
       return filteredArray;
+    }else{
+      return array;
     }
   }
-  public filterExternalCoolers() {
-    if(this.externalCoolers){
-      const externalCoolersValue = this.externalCoolers;
-      const filteredArray = this.products.filter(function(externalCoolers){
-        return externalCoolers.externalСoolers === externalCoolersValue;
-      })
+  public filterExternalCoolers(array : IFilter[]) {
+    if(this.externalCoolers && this.externalCoolers.length !== 0){
+      const  arrayCoolers = this.externalCoolers;
+      const filteredArray = array.filter(function(externalCoolers){
+        return arrayCoolers.indexOf(String(externalCoolers.externalСoolers) ) > -1;
+        });
       return filteredArray;
+    }else{
+      return array;
     }
   }
 }
