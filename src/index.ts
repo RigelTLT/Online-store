@@ -5,40 +5,8 @@ import SortProduct from './components/sort/sort';
 import Slider from './components/slider/slider';
 import {Filter, IFilter} from './components/filters/filter';
 import {createListProduct} from './components/list/list';
+import { search } from './components/search/search';
 
-createListProduct(source);
-const cellProducts = document.querySelectorAll('.cell-products');
-cellProducts.forEach((element) => {
-  element.addEventListener('click', addBasket);
-})
-const sortProd = new SortProduct();
-const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
-sortNameButton.addEventListener('click', activeFilters);
-const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
-sortNameRevButton.addEventListener('click', activeFilters);
-const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
-sortYearButton.addEventListener('click', activeFilters);
-const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
-sortYearRevButton.addEventListener('click', activeFilters);
-const year = document.querySelector('.slider-year') as HTMLInputElement;
-const price = document.querySelector('.slider-price') as HTMLInputElement;
-const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
-const slider = new Slider(year, price, hull);
-slider.sliderYearObject.on('set', activeFilters);
-slider.filterPriceObject.on('set', activeFilters);
-slider.filterHullObject.on('set', activeFilters);
-const inputColor = document.querySelectorAll('.input-color');
-inputColor.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
-const buttonFulter = document.querySelectorAll('.button-filter');
-buttonFulter.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
-const buttonCooler = document.querySelectorAll('.external-cooler');
-buttonCooler.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
 function activeFilters (){
   const target = event?.target as HTMLElement;
   if(target.classList.contains('button-filter')){
@@ -79,6 +47,7 @@ arrayFiltered = array.filterColor(arrayFiltered) as IFilter[];
 arrayFiltered = array.filterName(arrayFiltered) as IFilter[];
 arrayFiltered = array.filterFormFactor(arrayFiltered) as IFilter[];
 arrayFiltered = array.filterExternalCoolers(arrayFiltered) as IFilter[];
+arrayFiltered = search(arrayFiltered) as IFilter[];
 createListProduct(arrayFiltered);
 const sortTitel = document.querySelector('.dropdown-toggle') as HTMLElement;
 switch(sortTitel.innerHTML) {
@@ -96,3 +65,39 @@ switch(sortTitel.innerHTML) {
     break;
 }
 }
+
+createListProduct(source);
+const cellProducts = document.querySelectorAll('.cell-products');
+cellProducts.forEach((element) => {
+  element.addEventListener('click', addBasket);
+})
+const sortProd = new SortProduct();
+const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
+sortNameButton.addEventListener('click', activeFilters);
+const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
+sortNameRevButton.addEventListener('click', activeFilters);
+const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
+sortYearButton.addEventListener('click', activeFilters);
+const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
+sortYearRevButton.addEventListener('click', activeFilters);
+const year = document.querySelector('.slider-year') as HTMLInputElement;
+const price = document.querySelector('.slider-price') as HTMLInputElement;
+const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
+const slider = new Slider(year, price, hull);
+slider.sliderYearObject.on('set', activeFilters);
+slider.filterPriceObject.on('set', activeFilters);
+slider.filterHullObject.on('set', activeFilters);
+const inputColor = document.querySelectorAll('.input-color');
+inputColor.forEach((element) => {
+  element.addEventListener('click', activeFilters);
+});
+const buttonFulter = document.querySelectorAll('.button-filter');
+buttonFulter.forEach((element) => {
+  element.addEventListener('click', activeFilters);
+});
+const buttonCooler = document.querySelectorAll('.external-cooler');
+buttonCooler.forEach((element) => {
+  element.addEventListener('click', activeFilters);
+});
+const searchInput = document.querySelector('.form-control') as HTMLInputElement;
+searchInput.addEventListener('input', activeFilters);
