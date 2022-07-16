@@ -15,10 +15,12 @@ import { search, cleanSearch } from './components/search/search';
   let formFactorValue : string[] = [];
   let сoolerValue : string[] = [];
   let sort : string = 'Sorting';
+  export let basket : number[] = [];
   const year = document.querySelector('.slider-year') as HTMLInputElement;
   const price = document.querySelector('.slider-price') as HTMLInputElement;
   const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
   const slider = new Slider(year, price, hull);
+  const sortProd = new SortProduct();
 function setLocalStorage() {
   localStorage.setItem('yearValue',  JSON.stringify(yearValue));
   localStorage.setItem('priceValue',  JSON.stringify(priceValue));
@@ -28,6 +30,7 @@ function setLocalStorage() {
   localStorage.setItem('formFactorValue',  JSON.stringify(formFactorValue));
   localStorage.setItem('сoolerValue',  JSON.stringify(сoolerValue));
   localStorage.setItem('sort', sort);
+  localStorage.setItem('basket',  JSON.stringify(basket));
 }
 window.addEventListener('beforeunload', setLocalStorage);
 function getLocalStorage() {
@@ -55,11 +58,14 @@ function getLocalStorage() {
     if(localStorage.getItem('sort')){
       sort = localStorage.getItem('sort') as string;
     }
-  loadFiltersSort(yearValue, priceValue, hullValue, colorValue, nameValue, formFactorValue, сoolerValue, sort);
+    if(localStorage.getItem('basket')){
+      basket = JSON.parse(localStorage.getItem('basket') as string);
+    }
+  loadFiltersSort(yearValue, priceValue, hullValue, colorValue, nameValue, formFactorValue, сoolerValue, sort, basket);
 }
 window.addEventListener("load", getLocalStorage);
 
-function loadFiltersSort(yearValue: number[], priceValue: number[], hullValue: number[], colorValue: string[], nameValue: string[], formFactorValue: string[], сoolerValue: string[], sort: string){
+function loadFiltersSort(yearValue: number[], priceValue: number[], hullValue: number[], colorValue: string[], nameValue: string[], formFactorValue: string[], сoolerValue: string[], sort: string, basket: number[]){
   slider.setYear(yearValue);
   slider.setPrice(priceValue);
   slider.setHull(hullValue);
@@ -127,6 +133,18 @@ function loadFiltersSort(yearValue: number[], priceValue: number[], hullValue: n
       break;
   }
 }
+addEvent();
+
+    basket.forEach((value)=>{
+      const elemProducts = document.querySelector(`.cell-products[data-id="${value}"]`);
+      if(elemProducts){
+        elemProducts.classList.add('active-product');
+      }
+    })
+  
+let numberGoods = document.querySelectorAll('.active-product');
+  const goods = document.querySelector('.number-goods') as HTMLElement;
+  goods.innerHTML = String(numberGoods.length);
 }
 export function activeFilters (){
   const target = event?.target as HTMLElement;
@@ -225,47 +243,50 @@ switch(sort) {
     sortProd.sortYearRevers();
     break;
 }
-}}
+}
+addEvent();
+}
 
-createListProduct(source);
-const cellProducts = document.querySelectorAll('.cell-products');
-cellProducts.forEach((element) => {
-  element.addEventListener('click', addBasket);
-})
-const sortProd = new SortProduct();
-const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
-sortNameButton.addEventListener('click', activeFilters);
-const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
-sortNameRevButton.addEventListener('click', activeFilters);
-const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
-sortYearButton.addEventListener('click', activeFilters);
-const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
-sortYearRevButton.addEventListener('click', activeFilters);
-const slidersButton = document.querySelectorAll('.noUi-handle');
-slidersButton.forEach((element) => {
-  element.addEventListener('click', function(){
-    slider.sliderYearObject.on('set', activeFilters);
-    slider.filterPriceObject.on('set', activeFilters);
-    slider.filterHullObject.on('set', activeFilters);
+//createListProduct(source);
+function addEvent() {
+  const sortNameButton = document.querySelector('.sort-name') as HTMLElement;
+  sortNameButton.addEventListener('click', activeFilters);
+  const sortNameRevButton = document.querySelector('.sort-name-revers') as HTMLElement;
+  sortNameRevButton.addEventListener('click', activeFilters);
+  const sortYearButton = document.querySelector('.sort-year') as HTMLElement;
+  sortYearButton.addEventListener('click', activeFilters);
+  const sortYearRevButton = document.querySelector('.sort-year-revers') as HTMLElement;
+  sortYearRevButton.addEventListener('click', activeFilters);
+  const slidersButton = document.querySelectorAll('.noUi-handle');
+  slidersButton.forEach((element) => {
+    element.addEventListener('click', function(){
+      slider.sliderYearObject.on('set', activeFilters);
+      slider.filterPriceObject.on('set', activeFilters);
+      slider.filterHullObject.on('set', activeFilters);
+    });
   });
-});
-const inputColor = document.querySelectorAll('.input-color');
-inputColor.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
-const buttonFilter = document.querySelectorAll('.button-filter');
-buttonFilter.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
-const buttonCooler = document.querySelectorAll('.external-cooler');
-buttonCooler.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
-const searchInput = document.querySelector('.form-control') as HTMLInputElement;
-searchInput.addEventListener('input', activeFilters);
-const searchCleanInput = document.querySelector('.clean-search') as HTMLInputElement;
-searchCleanInput.addEventListener('click', cleanSearch);
-const resetFilters = document.querySelectorAll('.btn-outline-secondary');
-resetFilters.forEach((element) => {
-  element.addEventListener('click', activeFilters);
-});
+  const inputColor = document.querySelectorAll('.input-color');
+  inputColor.forEach((element) => {
+    element.addEventListener('click', activeFilters);
+  });
+  const buttonFilter = document.querySelectorAll('.button-filter');
+  buttonFilter.forEach((element) => {
+    element.addEventListener('click', activeFilters);
+  });
+  const buttonCooler = document.querySelectorAll('.external-cooler');
+  buttonCooler.forEach((element) => {
+    element.addEventListener('click', activeFilters);
+  });
+  const searchInput = document.querySelector('.form-control') as HTMLInputElement;
+  searchInput.addEventListener('input', activeFilters);
+  const searchCleanInput = document.querySelector('.clean-search') as HTMLInputElement;
+  searchCleanInput.addEventListener('click', cleanSearch);
+  const resetFilters = document.querySelectorAll('.btn-outline-secondary');
+  resetFilters.forEach((element) => {
+    element.addEventListener('click', activeFilters);
+  });
+  const cellProducts = document.querySelectorAll('.cell-products');
+  cellProducts.forEach((element) => {
+    element.addEventListener('click', addBasket);
+  });
+}

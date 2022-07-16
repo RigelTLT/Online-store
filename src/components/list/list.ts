@@ -6,6 +6,7 @@ export function createListProduct(source: IFilters){
 source.forEach((element, index) => {
   const cellProducts = document.createElement('div');
   cellProducts.classList.add('cell-products');
+  cellProducts.dataset.id = element.id;
   cellProducts.dataset.name = element.name;
   cellProducts.dataset.year = element.year;
   cellProducts.dataset.formFactor = element.formFactor;
