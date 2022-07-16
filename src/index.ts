@@ -15,7 +15,7 @@ import { search, cleanSearch } from './components/search/search';
   let formFactorValue : string[] = [];
   let сoolerValue : string[] = [];
   let sort : string = 'Sorting';
-  export let basket : number[] = [];
+  let basket : number[] = [];
   const year = document.querySelector('.slider-year') as HTMLInputElement;
   const price = document.querySelector('.slider-price') as HTMLInputElement;
   const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
@@ -287,6 +287,19 @@ function addEvent() {
   });
   const cellProducts = document.querySelectorAll('.cell-products');
   cellProducts.forEach((element) => {
-    element.addEventListener('click', addBasket);
+    element.addEventListener('click', function () {
+      addBasket();
+      changeBasket();
+    });
   });
+}
+
+function changeBasket() {
+  const idGoods = document.querySelectorAll('.active-product');
+let list: number[] = [];
+idGoods.forEach((element) =>{
+  const id = Number(element.getAttribute('data-id'));
+  list.push(id);
+})
+basket = list.slice();
 }

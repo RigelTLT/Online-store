@@ -1,5 +1,3 @@
-import {basket} from '../../index'
-
 export function addBasket(){
   let cellProducts = event?.composedPath()[2] as HTMLElement;
   let numberGoods = document.querySelectorAll('.active-product');
@@ -36,11 +34,6 @@ else {
   alert.style.top = "0";
   setTimeout(hideAlert,5000, alert); 
 }
-const idGoods = document.querySelectorAll('.active-product');
-idGoods.forEach((element) =>{
-  const id = Number(element.getAttribute('data-id'));
-  basket.push(id);
-})
 }
  
   
