@@ -27,12 +27,12 @@ class Slider {
       step: 1,
     });
     this.filterPriceObject = noUiSlider.create(this.filterPrice, {
-      start: [0, 6000],
+      start: [0, 40000],
       connect: true,
       tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
       range: {
         min: [0],
-        max: [6000],
+        max: [40000],
       },
       step: 100,
     });
@@ -55,6 +55,15 @@ class Slider {
   }
   get valueHull(){
     return this.filterHullObject.get(true);
+  }
+  setYear(value: number[]){
+    this.sliderYearObject.set(value);
+  }
+  setPrice(value: number[]){
+    this.filterPriceObject.set(value);
+  }
+  setHull(value: number[]){
+    this.filterHullObject.set(value);
   }
  reset(){
   this.sliderYearObject.reset(false);
