@@ -1,4 +1,5 @@
 import {IFilters} from '../filters/filter';
+import {activeFilters} from './../../index';
 
 export function search(source: IFilters){
   const searchInput = (document.querySelector('.form-control') as HTMLInputElement)?.value as string;
@@ -8,4 +9,10 @@ export function search(source: IFilters){
   }else{
     return source;
   }
+}
+
+export function cleanSearch(){
+  const searchCleanInput = document.querySelector('.form-control') as HTMLInputElement;
+  searchCleanInput.value = '';
+  activeFilters();
 }

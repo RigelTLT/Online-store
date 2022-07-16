@@ -18,7 +18,7 @@ source.forEach((element, index) => {
   cellProducts.append(framePhoto);
   const photoProducts = document.createElement('img');
   photoProducts.classList.add('photo-products');
-  photoProducts.src = `./assets/img/${index + 1}.jpg`;
+  photoProducts.src = `./assets/img/${+element.id}.jpg`;
   framePhoto.append(photoProducts);
   const nameProducts = document.createElement('span');
   nameProducts.classList.add('name-products');

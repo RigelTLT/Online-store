@@ -5,10 +5,11 @@ import SortProduct from './components/sort/sort';
 import Slider from './components/slider/slider';
 import {Filter, IFilter} from './components/filters/filter';
 import {createListProduct} from './components/list/list';
-import { search } from './components/search/search';
+import { search, cleanSearch } from './components/search/search';
 
-function activeFilters (){
+export function activeFilters (){
   const target = event?.target as HTMLElement;
+  if(!target.classList.contains('reset')){
   if(target.classList.contains('button-filter')){
     target.classList.toggle('button-filter-active');
   }
@@ -49,7 +50,43 @@ arrayFiltered = array.filterFormFactor(arrayFiltered) as IFilter[];
 arrayFiltered = array.filterExternalCoolers(arrayFiltered) as IFilter[];
 arrayFiltered = search(arrayFiltered) as IFilter[];
 createListProduct(arrayFiltered);
-const sortTitel = document.querySelector('.dropdown-toggle') as HTMLElement;
+if(!target.classList.contains('reset-sort')){
+  const sortTitel = document.querySelector('.dropdown-toggle') as HTMLElement;
+switch(sortTitel.innerHTML) {
+  case "Title: A-Z":
+    sortProd.sortName();
+    break;
+    case "Title: Z-A":
+      sortProd.sortNameRevers();
+      break;
+      case "Year: ascending":
+    sortProd.sortYear();
+    break;
+    case "Year: descending":
+    sortProd.sortYearRevers();
+    break;
+}}
+else{
+  const sortTitel = document.querySelector('.dropdown-toggle') as HTMLElement;
+  sortTitel.innerHTML = 'Sorting';
+}
+}
+else{
+  slider.reset();
+  const inputColor = Array.from(document.querySelectorAll('.input-color:checked'));
+  inputColor.forEach((element) => {
+    (element as HTMLInputElement).checked = false;
+  });
+  const buttonFilter = document.querySelectorAll('.button-filter');
+  buttonFilter.forEach((element) => {
+    (element as HTMLElement).classList.remove('button-filter-active');
+  });
+  const buttonCooler = document.querySelectorAll('.external-cooler');
+  buttonCooler.forEach((element) => {
+    (element as HTMLInputElement).checked = false;
+  });
+  createListProduct(source);
+  const sortTitel = document.querySelector('.dropdown-toggle') as HTMLElement;
 switch(sortTitel.innerHTML) {
   case "Title: A-Z":
     sortProd.sortName();
@@ -64,7 +101,7 @@ switch(sortTitel.innerHTML) {
     sortProd.sortYearRevers();
     break;
 }
-}
+}}
 
 createListProduct(source);
 const cellProducts = document.querySelectorAll('.cell-products');
@@ -91,8 +128,8 @@ const inputColor = document.querySelectorAll('.input-color');
 inputColor.forEach((element) => {
   element.addEventListener('click', activeFilters);
 });
-const buttonFulter = document.querySelectorAll('.button-filter');
-buttonFulter.forEach((element) => {
+const buttonFilter = document.querySelectorAll('.button-filter');
+buttonFilter.forEach((element) => {
   element.addEventListener('click', activeFilters);
 });
 const buttonCooler = document.querySelectorAll('.external-cooler');
@@ -101,3 +138,9 @@ buttonCooler.forEach((element) => {
 });
 const searchInput = document.querySelector('.form-control') as HTMLInputElement;
 searchInput.addEventListener('input', activeFilters);
+const searchCleanInput = document.querySelector('.clean-search') as HTMLInputElement;
+searchCleanInput.addEventListener('click', cleanSearch);
+const resetFilters = document.querySelectorAll('.btn-outline-secondary');
+resetFilters.forEach((element) => {
+  element.addEventListener('click', activeFilters);
+});

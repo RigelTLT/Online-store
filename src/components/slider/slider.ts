@@ -1,6 +1,10 @@
 import noUiSlider, { API } from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import wNumb from 'wnumb';
+
+interface Islider extends HTMLElement {
+  noUiSlider: API;
+}
 class Slider {
   protected sliderYear: HTMLInputElement;
   protected filterPrice: HTMLInputElement;
@@ -23,12 +27,12 @@ class Slider {
       step: 1,
     });
     this.filterPriceObject = noUiSlider.create(this.filterPrice, {
-      start: [0, 40000],
+      start: [0, 6000],
       connect: true,
       tooltips: [wNumb({ decimals: 0 }), wNumb({ decimals: 0 })],
       range: {
         min: [0],
-        max: [40000],
+        max: [6000],
       },
       step: 100,
     });
@@ -51,6 +55,11 @@ class Slider {
   }
   get valueHull(){
     return this.filterHullObject.get(true);
+  }
+ reset(){
+  this.sliderYearObject.reset(false);
+  this.filterPriceObject.reset(false);
+  this.filterHullObject.reset(false);
   }
 }
 export default Slider;
