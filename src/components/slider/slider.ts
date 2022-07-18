@@ -2,17 +2,20 @@ import noUiSlider, { API } from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import wNumb from 'wnumb';
 
-interface Islider extends HTMLElement {
-  noUiSlider: API;
-}
 class Slider {
   protected sliderYear: HTMLInputElement;
+
   protected filterPrice: HTMLInputElement;
+
   protected filterHull: HTMLInputElement;
+
   public sliderYearObject: API;
+
   public filterPriceObject: API;
+
   public filterHullObject: API;
-  constructor(sliderYear: HTMLInputElement, filterPrice: HTMLInputElement, filterHull: HTMLInputElement){
+
+  constructor(sliderYear: HTMLInputElement, filterPrice: HTMLInputElement, filterHull: HTMLInputElement) {
     this.sliderYear = sliderYear;
     this.filterPrice = filterPrice;
     this.filterHull = filterHull;
@@ -47,28 +50,35 @@ class Slider {
       step: 10,
     });
   }
-  get valueYear(){
-    return this.sliderYearObject.get(true);
+
+  get valueYear(): number[] {
+    return (this.sliderYearObject.get(true) as number[]);
   }
-  get valuePrice(){
-    return this.filterPriceObject.get(true);
+
+  get valuePrice(): number[] {
+    return (this.filterPriceObject.get(true) as number[]);
   }
-  get valueHull(){
-    return this.filterHullObject.get(true);
+
+  get valueHull(): number[] {
+    return (this.filterHullObject.get(true) as number[]);
   }
-  setYear(value: number[]){
+
+  setYear(value: number[]): void {
     this.sliderYearObject.set(value);
   }
-  setPrice(value: number[]){
+
+  setPrice(value: number[]): void {
     this.filterPriceObject.set(value);
   }
-  setHull(value: number[]){
+
+  setHull(value: number[]): void {
     this.filterHullObject.set(value);
   }
- reset(){
-  this.sliderYearObject.reset(false);
-  this.filterPriceObject.reset(false);
-  this.filterHullObject.reset(false);
+
+  reset(): void {
+    this.sliderYearObject.reset(false);
+    this.filterPriceObject.reset(false);
+    this.filterHullObject.reset(false);
   }
 }
 export default Slider;
