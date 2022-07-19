@@ -1,4 +1,5 @@
 import { IFilter } from '../filters/filter';
+import { addBasket } from '../basket/basket';
 
 export function createListProduct(source: Array<IFilter>): void {
   const products = document.querySelector('.products') as HTMLElement;
@@ -54,6 +55,10 @@ export function createListProduct(source: Array<IFilter>): void {
       priceProducts.classList.add('priceProducts');
       cellProducts.append(priceProducts);
       priceProducts.innerHTML = `Price: ${element.price}`;
+    });
+    const cellProducts = document.querySelectorAll('.cell-products');
+    cellProducts.forEach((element) => {
+      element.addEventListener('click', addBasket);
     });
   } else {
     products.innerHTML = '<h2>Ничего не найдено</h2>';

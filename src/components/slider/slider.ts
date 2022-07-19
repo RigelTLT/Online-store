@@ -82,3 +82,7 @@ class Slider {
   }
 }
 export default Slider;
+const year = document.querySelector('.slider-year') as HTMLInputElement;
+const price = document.querySelector('.slider-price') as HTMLInputElement;
+const hull = document.querySelector('.slider-hull-width') as HTMLInputElement;
+export const sliderClass = new Slider(year, price, hull);
