@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <title>Online store</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="alert">
+        <h2>Cart max exceeded!</h2>
+      </div>
+    </div>
+    <header class="header">
+      <h1>Online store</h1>
+      <div class="basket">
+        <span class="number-goods">0</span>
+      </div>
+    </header>
+    <main>
+      <section class="search-sort">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend" id="button-addon3">
+            <button class="btn btn-outline-secondary reset" type="button">
+              Reset filters
+            </button>
+            <button class="btn btn-outline-secondary reset-sort" type="button">
+              Reset sort
+            </button>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            aria-describedby="button-addon3"
+            autofocus
+            autocomplete="false"
+          />
+          <button class="clean-search">	
+            &#10006;</button>
+        </div>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >Sorting</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item sort-name">Title: A-Z</div>
+            <div class="dropdown-item sort-name-revers">Title: Z-A</div>
+            <div class="dropdown-item sort-year">Year: ascending</div>
+            <div class="dropdown-item sort-year-revers">Year: descending</div>
+          </div>
+        </div>
+      </section>
+      <div class="container-products">
+        <section class="filters">
+          <h5>Filter year</h5>
+          <div class="slider-year"></div>
+          <h5>Filter price</h5>
+          <div class="slider-price"></div>
+          <h5>Filter hull width</h5>
+          <div class="slider-hull-width"></div>
+          <h5>Filter color</h5>
+          <ul class="list-filter">
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="red" class="input-color red"><span class="span-color span-red"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="blue" class="input-color blue"><span class="span-color span-blue"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="black" class="input-color black"><span class="span-color span-black"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="grey" class="input-color grey"><span class="span-color span-grey"></span></label></li>
+            <li class="element-filter"><label class="label-color"><input type="checkbox" value="white" class="input-color white"><span class="span-color span-white"></span></label></li>
+          </ul>
+          <h5>Filter name</h5>
+          <ul class="list-filter">
+            <li class="element-filter">
+              <button class="button-filter name">AeroCool</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">Corsair</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">Cougar</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">DEEPCOOL</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">Dexp</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">Exgate</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">Formula</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">GINZZU</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">ZALMAN</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter name">ZET</button>
+            </li>
+          </ul>
+          <h5>Filter form factor</h5>
+          <ul class="list-filter">
+            <li class="element-filter">
+              <button class="button-filter form-factor">Mini-Tower</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter form-factor">Mid-Tower</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter form-factor">SFF</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter form-factor">Mini-ITX</button>
+            </li>
+            <li class="element-filter">
+              <button class="button-filter form-factor">Full-Tower</button>
+            </li>
+          </ul>
+          <h5>Filter external coolers</h5>
+          <div class="container-coolers">
+          <label for="label-cooler">Yes</label>
+          <input id="cooler-yes" value="true" class="external-cooler" type="checkbox"/>
+          <label for="label-cooler">No</label>
+          <input id="cooler-no" value="false" class="external-cooler" type="checkbox"/>
+          </div>
+        </section>
+        <section class="products"></section>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
